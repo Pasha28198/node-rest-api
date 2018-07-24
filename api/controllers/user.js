@@ -63,17 +63,19 @@ exports.create_new_user = (req, res, next) => {
                     if(err) {
                         return res.status(500).json({error: err});
                     } else {
-                        
+                        const idUser = mongoose.Types.ObjectId();
+
                         const account = new Account({
                             _id: mongoose.Types.ObjectId(),
-                            account_ammount: 1000
+                            account_ammount: 1000,
+                            userId: idUser
                         })
 
                         account
                             .save()
                             .then(result => {
                                 const user = new User({
-                                    _id: mongoose.Types.ObjectId(),
+                                    _id: idUser,
                                     email: req.body.email,
                                     password: hash,
                                     account: result._id
