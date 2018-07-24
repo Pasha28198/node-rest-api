@@ -16,6 +16,11 @@ app.use('/uploads', express.static('uploads'))
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', '*');
+})
+
 app.use('/user', userRoutes)
 app.use('/transaction', transactionRoutes)
 
