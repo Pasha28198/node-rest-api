@@ -48,7 +48,6 @@ exports.sign_in_user = (req, res, next) => {
 }
 
 exports.create_new_user = (req, res, next) => {
-
     User.find({email: req.body.email})
         .exec()
         .then(user => {
